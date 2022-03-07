@@ -8,9 +8,13 @@ import CartItem from "./CartItem";
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
 
-  const addItemToCardHandler = (item) => {};
+  const addItemToCardHandler = (item) => {
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
 
-  const removeItemFromHandler = (id) => {};
+  const removeItemFromHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -34,7 +38,7 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>35.62</span>
+        <span>{cartCtx.totalAmount}</span>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.onHideCart}>
